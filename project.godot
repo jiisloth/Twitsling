@@ -1,0 +1,173 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "BaseEmotesCache",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/cache/base_emotes_cache.gd"
+}, {
+"base": "BaseEmotesCache",
+"class": "BttvEmotesCache",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/cache/bttv_emotes_cache.gd"
+}, {
+"base": "Reference",
+"class": "ChatList",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/chat_list.gd"
+}, {
+"base": "Reference",
+"class": "ChatUser",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/chat_user.gd"
+}, {
+"base": "BaseEmotesCache",
+"class": "FfzEmotesCache",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/cache/ffz_emotes_cache.gd"
+}, {
+"base": "Reference",
+"class": "HelperTools",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/tools.gd"
+}, {
+"base": "Object",
+"class": "HttpHeaders",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/http/http_headers.gd"
+}, {
+"base": "Node",
+"class": "HttpRequestQueue",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/http/http_request_queue.gd"
+}, {
+"base": "Reference",
+"class": "InteractiveCommands",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/interactive_commands.gd"
+}, {
+"base": "Reference",
+"class": "IrcChatMessage",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/irc_chat_message.gd"
+}, {
+"base": "Node",
+"class": "IrcClientEx",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/irc_client_ex.gd"
+}, {
+"base": "Node",
+"class": "IrcClientSecure",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/irc_client_scure.gd"
+}, {
+"base": "Reference",
+"class": "MessageWrapper",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/message_wrapper.gd"
+}, {
+"base": "Object",
+"class": "Queue",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/queue.gd"
+}, {
+"base": "IrcClientSecure",
+"class": "TwiCIL",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/godot_twicil.gd"
+}, {
+"base": "Object",
+"class": "TwitchApiWrapper",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/api/twitch_api_wrapper.gd"
+}, {
+"base": "BaseEmotesCache",
+"class": "TwitchEmotesCache",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/cache/twitch_emotes_cache.gd"
+}, {
+"base": "Reference",
+"class": "TwitchIrcServerMessage",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/twitch_irc_server_message.gd"
+}, {
+"base": "Reference",
+"class": "TwitchMessage",
+"language": "GDScript",
+"path": "res://addons/godot-twicil/helpers/twitch_message_wrapper.gd"
+} ]
+_global_script_class_icons={
+"BaseEmotesCache": "",
+"BttvEmotesCache": "",
+"ChatList": "",
+"ChatUser": "",
+"FfzEmotesCache": "",
+"HelperTools": "",
+"HttpHeaders": "",
+"HttpRequestQueue": "",
+"InteractiveCommands": "",
+"IrcChatMessage": "",
+"IrcClientEx": "",
+"IrcClientSecure": "",
+"MessageWrapper": "",
+"Queue": "",
+"TwiCIL": "",
+"TwitchApiWrapper": "",
+"TwitchEmotesCache": "",
+"TwitchIrcServerMessage": "",
+"TwitchMessage": ""
+}
+
+[application]
+
+config/name="ViuhtiPallerings - ESKISTÄ PAUSELLE"
+run/main_scene="res://Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Config="*res://config.gd"
+Global="*res://global.gd"
+
+[display]
+
+window/size/width=1520
+window/size/height=855
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot-twicil/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+Pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shoot={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_clear_color=Color( 0.137255, 0.286275, 0.458824, 1 )
+environment/default_environment="res://default_env.tres"
