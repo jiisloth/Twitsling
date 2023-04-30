@@ -8,6 +8,8 @@ export(PackedScene) var PegBomb
 export(PackedScene) var PegXplode
 export(PackedScene) var PegBad
 export(PackedScene) var Stone
+export(PackedScene) var Xplode
+export(PackedScene) var ScorePop
 
 var lvl
 var launchpos
@@ -111,3 +113,23 @@ func _on_KillZone_body_entered(body):
     if body.is_in_group("Stone"):
         Global.set_inactive(body.sender)
         body.queue_free()
+
+
+func create_explosion(pos, sender):
+    var xplosion = Xplode.instance()
+    xplosion.global_position = pos
+    xplosion.sender = sender
+    add_child(xplosion)
+    
+    
+func create_pegxplode(pos):
+    var pegxplosion = PegXplode.instance()
+    pegxplosion.global_position = pos
+    add_child(pegxplosion)
+    
+    
+func create_scorepop(pos, score):
+    var scorepop = ScorePop.instance()
+    scorepop.global_position = pos
+    scorepop.txt = str(score) + "p"
+    add_child(scorepop)

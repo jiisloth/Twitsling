@@ -7,11 +7,14 @@ func _ready():
     set_level_name()
     
 
-func shoot(sender, dir, power):
+func shoot(sender, dir, power, admin=false):
     if not Global.paused:
         if not Global.check_active(sender):
             $Level.shoot(sender, dir, power)
-            Global.set_active(sender)
+            if admin and Config.allow_admin_spam:
+                Global.set_inactive(sender)
+            else:
+                Global.set_active(sender)
 
 
 func _process(delta):
@@ -32,9 +35,9 @@ func _process(delta):
                 var dir = rad2deg(diff.angle())-180
                 if dir <= -180:
                     dir += 360
-                var power = min(diff.length()/2, 100)
+                var power = min(diff.length(), 100)
                 print("Admin shot: d: ", -dir, " p: ", power)
-                shoot("<!> Admin", dir, power)
+                shoot("<!> Admin", dir, power, true)
             else:
                 adminshoot = true
             

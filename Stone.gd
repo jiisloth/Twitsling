@@ -1,11 +1,6 @@
 extends RigidBody2D
 
 
-
-export(PackedScene) var Xplode
-export(PackedScene) var PegXplode
-export(PackedScene) var ScorePop
-
 var hits = 1
 
 var sender = ""
@@ -16,7 +11,7 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
     $Label.text = sender.left(3)
-    apply_central_impulse(Vector2(1+init_p*4.0,0).rotated(deg2rad(init_d)))
+    apply_central_impulse(Vector2(1+init_p*5,0).rotated(deg2rad(init_d)))
     apply_torque_impulse(init_d*100)
     set_colors()
 
@@ -43,16 +38,12 @@ func set_colors():
 func _on_Stone_body_entered(body):
     var score = 5 + randi()%10 + randi()%(5*hits)
     if body.is_in_group("XplodePeg"):
-        var xplosion = Xplode.instance()
-        xplosion.global_position = body.global_position
-        xplosion.sender = sender
-        get_parent().add_child(xplosion)
+        get_parent().create_explosion(body.global_position, sender)
         score *= 2
 
     if body.is_in_group("BombPeg"):
-        var pegxplosion = PegXplode.instance()
-        pegxplosion.global_position = body.global_position
-        get_parent().add_child(pegxplosion)
+        get_parent().create_pegxplode(body.global_position)
+        
     
     if body.is_in_group("BadPeg"):
         score = -score
@@ -63,10 +54,7 @@ func _on_Stone_body_entered(body):
     
     
     if body.is_in_group("RemovePeg"):
-        var scorepop = ScorePop.instance()
-        scorepop.global_position = body.global_position
-        scorepop.txt = str(score) + "p"
-        get_parent().add_child(scorepop)
+        get_parent().create_scorepop(body.global_position, score)
         Global.add_score(sender, score)
         hits += 1
         
