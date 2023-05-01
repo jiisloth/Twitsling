@@ -36,14 +36,17 @@ func set_colors():
     
 
 func _on_Stone_body_entered(body):
-    var score = 5 + randi()%10 + randi()%(5*hits)
+    var score = 5 # + randi()%10 + randi()%(5*hits)
     if body.is_in_group("XplodePeg"):
         get_parent().create_explosion(body.global_position, sender)
         score *= 2
+    if body.is_in_group("BouncePeg"):
+        var impulse = global_position - body.global_position
+        apply_central_impulse(impulse * 20)
 
     if body.is_in_group("BombPeg"):
         get_parent().create_pegxplode(body.global_position)
-        
+
     
     if body.is_in_group("BadPeg"):
         score = -score

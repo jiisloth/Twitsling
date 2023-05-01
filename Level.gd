@@ -7,6 +7,8 @@ export(PackedScene) var PegRewind
 export(PackedScene) var PegBomb
 export(PackedScene) var PegXplode
 export(PackedScene) var PegBad
+export(PackedScene) var PegBounce
+export(PackedScene) var PegBounceRemove
 export(PackedScene) var Stone
 export(PackedScene) var Xplode
 export(PackedScene) var ScorePop
@@ -74,15 +76,16 @@ func add_peg(coord, variant, initial):
         1:
             peg = Peg.instance()
         2:
-            var r = randi()%20
+            var r = randi()%100
             peg = PegNormal.instance()
-            match r:
-                0:
-                    peg = PegSticky.instance()
-                1:
-                    peg = PegRewind.instance()
-                2:
-                    peg = PegBomb.instance()
+            if r < 5:
+                peg = PegRewind.instance()
+            elif r < 15:
+                peg = PegBomb.instance()
+            elif r < 25:
+                peg = PegSticky.instance()
+            elif r < 35:
+                peg = PegBounce.instance()
         3:
             peg = PegNormal.instance()
         4:
@@ -95,9 +98,13 @@ func add_peg(coord, variant, initial):
             peg = PegXplode.instance()
         8:
             peg = PegBad.instance()
-        
-    peg.position = pegpos
-    add_child(peg)
+        9:
+            peg = PegBounce.instance()
+        10:
+            peg = PegBounceRemove.instance()
+    if peg != null:
+        peg.position = pegpos
+        add_child(peg)
     
 
 func shoot(sender, dir, power):

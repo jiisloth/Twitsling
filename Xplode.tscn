@@ -59,7 +59,7 @@ autostart = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 10 )
-frame = 2
+frame = 1
 speed_scale = 4.0
 playing = true
 
