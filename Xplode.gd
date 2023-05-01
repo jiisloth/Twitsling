@@ -7,7 +7,7 @@ func _on_Xplode_body_entered(body):
     if body.is_in_group("XplodePeg") or body.is_in_group("BombPeg"):
         if body.global_position == global_position:
             return
-        get_parent().create_explosion(body.global_position, sender)
+        get_parent().call_deferred("create_explosion",body.global_position, sender)
         score *= 2
     
     if body.is_in_group("BadPeg"):
