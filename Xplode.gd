@@ -1,11 +1,6 @@
 extends Area2D
 
-
 var sender = ""
-
-
-            
-
 
 func _on_Xplode_body_entered(body):
     var score = 5 + randi()%10 + randi()%10
@@ -40,4 +35,8 @@ func _on_Xplode_body_entered(body):
 
 
 func _on_Timer_timeout():
+    get_node("CollisionShape2D").disabled = true
+
+
+func _on_AnimatedSprite_animation_finished():
     queue_free()
