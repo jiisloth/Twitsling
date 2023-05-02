@@ -78,14 +78,14 @@ func add_peg(coord, variant, initial):
         2:
             var r = randi()%100
             peg = PegNormal.instance()
-            if r < 5:
+            if r < 1:
                 peg = PegRewind.instance()
-            elif r < 15:
+            elif r < 11:
                 peg = PegBomb.instance()
-            elif r < 25:
+            elif r < 21:
                 peg = PegSticky.instance()
-            elif r < 35:
-                peg = PegBounce.instance()
+            elif r < 31:
+                peg = PegBounceRemove.instance()
         3:
             peg = PegNormal.instance()
         4:
