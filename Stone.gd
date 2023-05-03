@@ -38,8 +38,10 @@ func set_colors():
 func _on_Stone_body_entered(body):
     var score = 5 # + randi()%10 + randi()%(5*hits)
     if body.is_in_group("XplodePeg"):
-        get_parent().call_deferred("create_explosion",body.global_position, sender)
-        score *= 2
+        if body.exploded == false:
+            get_parent().call_deferred("create_explosion",body.global_position, sender)
+            score *= 2
+            body.exploded = true
     if body.is_in_group("BouncePeg"):
         var impulse = global_position - body.global_position
         call_deferred("apply_central_impulse",impulse * 20)
@@ -63,3 +65,11 @@ func _on_Stone_body_entered(body):
         
         body.queue_free()
 
+
+
+func _on_Timer_timeout():
+    get_parent().call_deferred("create_explosion", global_position, sender)
+    var score = -1000
+    get_parent().create_scorepop(global_position, score)
+    Global.add_score(sender, score)
+    call_deferred("queue_free")

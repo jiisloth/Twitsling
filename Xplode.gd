@@ -5,10 +5,12 @@ var sender = ""
 func _on_Xplode_body_entered(body):
     var score = 5 + randi()%10 + randi()%10
     if body.is_in_group("XplodePeg") or body.is_in_group("BombPeg"):
-        if body.global_position == global_position:
-            return
-        get_parent().call_deferred("create_explosion",body.global_position, sender)
-        score *= 2
+        if body.exploded == false:
+            if body.global_position == global_position:
+                return
+            get_parent().call_deferred("create_explosion",body.global_position, sender)
+            score *= 2
+            body.exploded = true
     
     if body.is_in_group("BadPeg"):
         score = -score
