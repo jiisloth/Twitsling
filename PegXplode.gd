@@ -1,3 +1,3 @@
 extends StaticBody2D
 
-var exploded = true
+var exploded = false

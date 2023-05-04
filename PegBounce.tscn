@@ -9,7 +9,7 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
 
-[node name="PegBounce" type="StaticBody2D" groups=["BouncePeg", "Peg"]]
+[node name="PegBounce" type="StaticBody2D" groups=["BouncePeg", "HardPeg", "Peg"]]
 physics_material_override = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="." instance=ExtResource( 1 )]
