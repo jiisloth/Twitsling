@@ -25,10 +25,10 @@ func _on_Xplode_body_entered(body):
         Global.add_score(sender, score)
         body.queue_free()
     
-    if body.is_in_group("HardPeg"):
-        get_parent().create_scorepop(body.global_position, score)
-        Global.add_score(sender, score)
-        body.queue_free()
+    # if body.is_in_group("HardPeg"):
+    #     get_parent().create_scorepop(body.global_position, score)
+    #     Global.add_score(sender, score)
+    #     body.queue_free()
 
         
     if body.is_in_group("Stone"):
