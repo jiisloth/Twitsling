@@ -2,6 +2,8 @@ extends Node2D
 
 var adminshoot = false
 
+var spam = false
+
 func _ready():
     randomize()
     set_level_name()
@@ -9,7 +11,7 @@ func _ready():
 
 func shoot(sender, dir, power, admin=false):
     if not Global.paused:
-        if not Global.check_active(sender):
+        if not Global.check_active(sender) or spam:
             $Level.shoot(sender, dir, power)
             if admin and Config.allow_admin_spam:
                 Global.set_inactive(sender)
@@ -65,3 +67,18 @@ func _on_Next_gui_input(event):
     if (event is InputEventMouseButton && event.pressed && event.button_index == 1):
         $Level.set_level(1)
         set_level_name()
+
+
+func _on_Reset_gui_input(event):
+    if (event is InputEventMouseButton && event.pressed && event.button_index == 1):
+        Global.reset_all()
+
+
+func _on_Spam_gui_input(event):
+    if (event is InputEventMouseButton && event.pressed && event.button_index == 1):
+        if spam:
+            spam = false
+            $PauseScreen/Spam.text = "Spämmi -  Ei"
+        else:
+            spam = true
+            $PauseScreen/Spam.text = "Spämmi - Joo"

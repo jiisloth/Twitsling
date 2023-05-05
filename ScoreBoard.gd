@@ -5,6 +5,7 @@ export(PackedScene) var PlayerRow
 
 func _ready():
     Global.connect("score_updated", self, "on_update")
+    Global.connect("score_reset", self, "on_reset")
     on_update()
 
 var players = {}
@@ -22,7 +23,14 @@ func on_update():
             $Tween.interpolate_property(prow, "margin_top", prow.margin_top, i * row_height, 0.5,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
             $Tween.start()
         i += 1
-            
+
+
+func on_reset():
+    for prowi in players.keys():
+        players[prowi].queue_free()
+        
+    players = {} 
+    
             
 func add_player(player, i):
     var prow = PlayerRow.instance()

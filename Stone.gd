@@ -72,4 +72,5 @@ func _on_Timer_timeout():
     var score = -1000
     get_parent().create_scorepop(global_position, score)
     Global.add_score(sender, score)
+    Global.set_inactive(sender)
     call_deferred("queue_free")

@@ -320,7 +320,7 @@ format = 1
 [node name="Sides" type="StaticBody2D" parent="."]
 
 [node name="Left" type="CollisionShape2D" parent="Sides"]
-position = Vector2( 16, 512 )
+position = Vector2( 16, -2816 )
 shape = SubResource( 3 )
 
 [node name="Left2" type="CollisionShape2D" parent="Sides"]
@@ -328,7 +328,7 @@ position = Vector2( 128, 560 )
 shape = SubResource( 4 )
 
 [node name="Right" type="CollisionShape2D" parent="Sides"]
-position = Vector2( 1520, 512 )
+position = Vector2( 1520, -2816 )
 shape = SubResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sides"]

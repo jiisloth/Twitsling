@@ -35,20 +35,22 @@ func set_level(add):
 
   
 func rewind():
-    $Fade/Tween.interpolate_property($Fade/Fader, "modulate:a", 0.5, 0, 0.3)
-    $Fade/Tween.start()
-    set_pegs(false)
+    var pegs = get_tree().get_nodes_in_group("RemovePeg")
+    for peg in pegs:
+        peg.call_deferred("queue_free")
     
 func set_pegs(initial=true):
+    print("bruh")
     if initial:
         $Hodl.clear()
+        Global.reset_all_players()
         var stones = get_tree().get_nodes_in_group("Stone")
         for stone in stones:
-            Global.set_inactive(stone.sender)
             stone.queue_free()
-    var pegs = get_tree().get_nodes_in_group("Peg")
-    for peg in pegs:
-        peg.queue_free()
+    
+        var pegs = get_tree().get_nodes_in_group("Peg")
+        for peg in pegs:
+            peg.queue_free()
             
     var tiles = lvl.get_used_cells()
     for coord in tiles:
@@ -67,6 +69,11 @@ func add_peg(coord, variant, initial):
         for stone in stones:
             if (stone.position - pegpos).length() < 34:
                 return
+        var pegs = get_tree().get_nodes_in_group("Peg")
+        for peg in pegs:
+            if not peg.is_in_group("RemovePeg"):
+                if (peg.position - pegpos).length() < 2:
+                    return
             
     var peg
     match variant:
@@ -144,4 +151,6 @@ func create_scorepop(pos, score):
 func _process(delta):
     var pegs = get_tree().get_nodes_in_group("RemovePeg")
     if len(pegs) == 0:
-        rewind()
+        $Fade/Tween.interpolate_property($Fade/Fader, "modulate:a", 0.5, 0, 0.3)
+        $Fade/Tween.start()
+        set_pegs(false)

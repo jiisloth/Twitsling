@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Twitch.gd" type="Script" id=2]
@@ -17,6 +17,10 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 72
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 36
 font_data = ExtResource( 6 )
 
 [node name="Main" type="Node2D"]
@@ -84,29 +88,40 @@ text = "Peli Paussilla!"
 
 [node name="Continue" type="Label" parent="PauseScreen"]
 margin_left = 408.0
-margin_top = 472.0
+margin_top = 400.0
 margin_right = 1144.0
-margin_bottom = 552.0
+margin_bottom = 480.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
 text = "Jatka"
 align = 1
 
+[node name="Spam" type="Label" parent="PauseScreen"]
+margin_left = 408.0
+margin_top = 608.0
+margin_right = 1232.0
+margin_bottom = 688.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 4 )
+text = "Spämmi -  EI"
+align = 1
+
 [node name="Label3" type="Label" parent="PauseScreen"]
 margin_left = 608.0
-margin_top = 584.0
+margin_top = 512.0
 margin_right = 960.0
-margin_bottom = 664.0
+margin_bottom = 592.0
 custom_fonts/font = SubResource( 4 )
 text = "Kenttä"
 align = 1
 
 [node name="Previous" type="Label" parent="PauseScreen"]
 margin_left = 513.0
-margin_top = 584.0
+margin_top = 512.0
 margin_right = 609.0
-margin_bottom = 664.0
+margin_bottom = 592.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
@@ -115,15 +130,28 @@ align = 1
 
 [node name="Next" type="Label" parent="PauseScreen"]
 margin_left = 904.0
-margin_top = 584.0
+margin_top = 512.0
 margin_right = 1112.0
-margin_bottom = 664.0
+margin_bottom = 592.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
 text = ">"
 align = 1
 
+[node name="Reset" type="Label" parent="PauseScreen"]
+margin_left = 416.0
+margin_top = 800.0
+margin_right = 1152.0
+margin_bottom = 848.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 6 )
+text = "Nollaa pisteet"
+align = 1
+
 [connection signal="gui_input" from="PauseScreen/Continue" to="." method="_on_Continue_gui_input"]
+[connection signal="gui_input" from="PauseScreen/Spam" to="." method="_on_Spam_gui_input"]
 [connection signal="gui_input" from="PauseScreen/Previous" to="." method="_on_Previous_gui_input"]
 [connection signal="gui_input" from="PauseScreen/Next" to="." method="_on_Next_gui_input"]
+[connection signal="gui_input" from="PauseScreen/Reset" to="." method="_on_Reset_gui_input"]

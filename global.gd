@@ -6,6 +6,7 @@ var players = []
 var paused = true
 
 signal score_updated
+signal score_reset
 
 class MyCustomSorter:
     static func sort(a, b):
@@ -35,8 +36,18 @@ func set_inactive(nick):
             p["active"] = false
             return
     players.append({"nick": nick, "score": 0, "id": len(players), "active": false})
-    
 
+
+func reset_all_players():
+    for p in players:
+        p["active"] = false
+        
+
+func reset_all():
+    players = []
+    emit_signal("score_reset")
+        
+        
 func add_score(nick, score):
     var player = false
     var i = 0
