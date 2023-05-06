@@ -1,6 +1,7 @@
 extends Area2D
 
 var sender = ""
+var bigboom = true
 
 func _on_Xplode_body_entered(body):
     var score = 5 + randi()%10 + randi()%10
@@ -25,10 +26,10 @@ func _on_Xplode_body_entered(body):
         Global.add_score(sender, score)
         body.queue_free()
     
-    # if body.is_in_group("HardPeg"):
-    #     get_parent().create_scorepop(body.global_position, score)
-    #     Global.add_score(sender, score)
-    #     body.queue_free()
+    if bigboom and body.is_in_group("HardPeg"):
+        get_parent().create_scorepop(body.global_position, score)
+        Global.add_score(sender, score)
+        body.queue_free()
 
         
     if body.is_in_group("Stone"):

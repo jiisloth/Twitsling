@@ -68,7 +68,7 @@ func _on_Stone_body_entered(body):
 
 
 func _on_Timer_timeout():
-    get_parent().call_deferred("create_explosion", global_position, sender)
+    get_parent().call_deferred("create_explosion", global_position, sender, false)
     var score = -1000
     get_parent().create_scorepop(global_position, score)
     Global.add_score(sender, score)
