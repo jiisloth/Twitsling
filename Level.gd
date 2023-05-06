@@ -128,8 +128,9 @@ func _on_KillZone_body_entered(body):
         body.queue_free()
 
 
-func create_explosion(pos, sender):
+func create_explosion(pos, sender, bigboom = true):
     var xplosion = Xplode.instance()
+    xplosion.bigboom = bigboom
     xplosion.global_position = pos
     xplosion.sender = sender
     add_child(xplosion)
